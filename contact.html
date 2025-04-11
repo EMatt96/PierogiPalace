@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierogi Palace - Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1>Contact Pierogi Palace</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact" style="max-width: 800px; margin: 60px auto; padding: 0 20px;">
+            <h2 style="text-align: center; color: #800020;">We’d love to hear from you!</h2>
+            <p><strong>Address:</strong> 651 Paseo Nuevo, Santa Barbara, CA 93101</p>
+            <p><strong>Parking:</strong> Available in Paseo Nuevo Mall Parking Garage</p>
+            <p><strong>Phone:</strong> (805) 555-PIER (7437)</p>
+            <p><strong>Email:</strong> <a href="mailto:info@pierogipalace.com">info@pierogipalace.com</a></p>
+        </section>
+
+        <section class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form id="contactForm" onsubmit="return validateForm();">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="\d{3}-\d{3}-\d{4}">
+
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+
+                <label for="zip">Zip Code:</label>
+                <input type="text" id="zip" name="zip" pattern="\d{5}" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pierogi Palace | Emma Matthews</p>
+    </footer>
+
+    <script>
+        function validateForm() {
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const city = document.getElementById('city');
+            const email = document.getElementById('email');
+            const zip = document.getElementById('zip');
+
+            firstName.value = capitalize(firstName.value);
+            lastName.value = capitalize(lastName.value);
+            city.value = capitalize(city.value);
+
+            const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+            if (!emailPattern.test(email.value)) {
+                alert('Please enter a valid email address.');
+                email.focus();
+                return false;
+            }
+
+            const zipPattern = /^\\d{5}$/;
+            if (!zipPattern.test(zip.value)) {
+                alert('Please enter a valid 5-digit zip code.');
+                zip.focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        }
+    </script>
+</body>
+</html>
